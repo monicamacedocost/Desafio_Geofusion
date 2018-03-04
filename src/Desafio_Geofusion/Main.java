@@ -3,8 +3,6 @@ package Desafio_Geofusion;
 
 
 import java.util.concurrent.TimeUnit;
-
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium;
@@ -15,7 +13,7 @@ import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium;
 
 /**
  * @author Costa, Monica
- * version 1.0  14 de julho 2016.
+ * version 1.0  01 de Março 2018.
  * 
  */
 
@@ -31,7 +29,7 @@ public class Main {
 
 
 
-	
+
 	public static void startSelenium() {
 		driver = new FirefoxDriver();
 		String baseUrl = "http://desafio.geofusion.tech";
@@ -39,21 +37,39 @@ public class Main {
 		selenium = new WebDriverBackedSelenium(driver, baseUrl);
 	}
 
-	
+
 	public void stopSelenium() {
-		//driver.close();
+		driver.close();
 	}
 
 
 
-
-
 	public static void main(String[] args) throws Exception {
+
 		Adicionar_Produto adicionar = new Adicionar_Produto();
-	
 		adicionar.startSelenium();
 		adicionar.cadastrar_produto();
 		adicionar.stopSelenium();
-		
+
+		Editar_Produto editar = new Editar_Produto();
+		editar.startSelenium();
+		editar.editar_produto();
+		editar.stopSelenium();
+
+		Pesquisa_Produto Pesquisar = new Pesquisa_Produto();
+		Pesquisar.startSelenium();
+		Pesquisar.pesquisar_produto();
+		Pesquisar.stopSelenium();
+
+		Excluir_Produto excluir = new Excluir_Produto();
+		excluir.startSelenium();
+		excluir.excluir_produto();
+		excluir.stopSelenium();
+
+
+
+
+		System.out.println("Teste finalizado!");
+
 	}
 }

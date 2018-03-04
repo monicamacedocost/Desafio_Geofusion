@@ -1,7 +1,7 @@
 package Desafio_Geofusion;
 
-import java.util.List;
 import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,15 +10,13 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium;
 
-
 /**
  * @author Costa, Monica
  * version 1.0  01 de Março 2018.
  * 
  */
 
-public class Adicionar_Produto {
-
+public class Excluir_Produto {
 
 	/** Variável utilizada para carregar o Web Driver, inicializa o navegador */
 	WebDriver driver;
@@ -41,7 +39,7 @@ public class Adicionar_Produto {
 
 
 
-	public void cadastrar_produto() throws Exception {
+	public void excluir_produto() throws Exception {
 
 		try {
 
@@ -63,45 +61,17 @@ public class Adicionar_Produto {
 			WebElement buttonSubmitName = driver.findElement(By.className("input-group-btn"));
 			buttonSubmitName.click();	
 
-			/*Clique no botão para cadastrar um novo produto*/
-			System.out.println("Cadastrando um novo produto");
-			WebElement buttonNovoProduto = driver.findElement(By.linkText("Novo Produto"));
-			buttonNovoProduto.click();
-
-			/*Inserindo o nome do novo produto*/
-			System.out.println("Inserindo o nome do produto");
-			WebElement produto = driver.findElement(By.name("name"));
-			produto.sendKeys(Variaveis.nome_produto);	
-
-			/*Inserindo o preço do novo produto*/
-			System.out.println("Inserindo o preço do produto");
-			WebElement preço = driver.findElement(By.name("price"));
-			preço.sendKeys(Variaveis.preço_produto);	
-
-			/*Inserindo a data de validade do produto*/
-			System.out.println("Inserindo a data de validade do produto");
-			WebElement data_validade = driver.findElement(By.id("campo3"));
-			data_validade.click();
-
-			List<WebElement> allDates=driver.findElements(By.className("day"));
-			for(WebElement selecionar_dia:allDates)
-			{
-
-				String date=selecionar_dia.getText();
-
-				if(date.equalsIgnoreCase("15"))
-				{
-					selecionar_dia.click();
-					break;
-				}
-
-			}
+			/*Clique no botão para excluir um produto*/
+			System.out.println("Excluindo um novo produto");
+			WebElement Excluir_produto = driver.findElement(By.linkText("Excluir"));
+			Excluir_produto.click();
 
 
-			/*Salvando o novo produto*/
-			System.out.println("Salvando o novo produto");
-			WebElement salvar_produto = driver.findElement(By.cssSelector("button.btn.btn-primary"));
-			salvar_produto.click();
+
+			/*Confirmando a exclusão do produto*/
+			System.out.println("Confirmando a exclusão do produto");
+			WebElement confirmar_exclusao = driver.findElement(By.xpath("//div[@id='delete-modal']/div/div/div[3]/button"));
+			confirmar_exclusao.click();
 
 			/*Clicando no alert de confirmação*/  
 			System.out.println("Clicando no alert de confirmação");
@@ -111,7 +81,10 @@ public class Adicionar_Produto {
 			.until(ExpectedConditions.alertIsPresent());
 			driver.switchTo().alert().accept();
 
-			System.out.println("Produto adicionado com sucesso!");   
+
+			System.out.println("Produto excluido com sucesso!");
+
+
 
 
 
@@ -120,18 +93,5 @@ public class Adicionar_Produto {
 		catch(Exception e)  {  
 			System.out.println(e);
 		}
-
-
-
-
-
-
-
-
-
-
-
-
-	}	
-
+	}
 }

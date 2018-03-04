@@ -1,5 +1,8 @@
 package Desafio_Geofusion;
 
+
+
+
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
@@ -17,8 +20,7 @@ import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium;
  * 
  */
 
-public class Adicionar_Produto {
-
+public class Editar_Produto {
 
 	/** Variável utilizada para carregar o Web Driver, inicializa o navegador */
 	WebDriver driver;
@@ -41,7 +43,7 @@ public class Adicionar_Produto {
 
 
 
-	public void cadastrar_produto() throws Exception {
+	public void editar_produto() throws Exception {
 
 		try {
 
@@ -63,20 +65,22 @@ public class Adicionar_Produto {
 			WebElement buttonSubmitName = driver.findElement(By.className("input-group-btn"));
 			buttonSubmitName.click();	
 
-			/*Clique no botão para cadastrar um novo produto*/
-			System.out.println("Cadastrando um novo produto");
-			WebElement buttonNovoProduto = driver.findElement(By.linkText("Novo Produto"));
-			buttonNovoProduto.click();
+			/*Clique no botão para editar um produto*/
+			System.out.println("Editando um novo produto");
+			WebElement Editar_produto = driver.findElement(By.linkText("Editar"));
+			Editar_produto.click();
 
 			/*Inserindo o nome do novo produto*/
 			System.out.println("Inserindo o nome do produto");
 			WebElement produto = driver.findElement(By.name("name"));
-			produto.sendKeys(Variaveis.nome_produto);	
+			produto.clear();
+			produto.sendKeys(Variaveis.nome_produto_editar);	
 
 			/*Inserindo o preço do novo produto*/
 			System.out.println("Inserindo o preço do produto");
 			WebElement preço = driver.findElement(By.name("price"));
-			preço.sendKeys(Variaveis.preço_produto);	
+			preço.clear();
+			preço.sendKeys(Variaveis.preço_produto_editar);	
 
 			/*Inserindo a data de validade do produto*/
 			System.out.println("Inserindo a data de validade do produto");
@@ -89,7 +93,7 @@ public class Adicionar_Produto {
 
 				String date=selecionar_dia.getText();
 
-				if(date.equalsIgnoreCase("15"))
+				if(date.equalsIgnoreCase("19"))
 				{
 					selecionar_dia.click();
 					break;
@@ -111,27 +115,16 @@ public class Adicionar_Produto {
 			.until(ExpectedConditions.alertIsPresent());
 			driver.switchTo().alert().accept();
 
-			System.out.println("Produto adicionado com sucesso!");   
+			System.out.println("Produto editado com sucesso!");   
+
 
 
 
 
 		}
+
 		catch(Exception e)  {  
 			System.out.println(e);
 		}
-
-
-
-
-
-
-
-
-
-
-
-
-	}	
-
+	}
 }
